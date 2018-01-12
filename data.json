@@ -1,0 +1,14 @@
+[
+    {
+        "email":"something@yahoo.com",
+        "Password":"password"
+    },
+    {
+        "email":"test@yahoo.com",
+        "password":"test999"
+    },
+    {
+        "email":"xxx@mail.xx",
+        "password":"xxx"
+    }
+]

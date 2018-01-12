@@ -1,0 +1,123 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head>  
+    <title></title>  
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>  
+    <script src="Bookcontroller.js"></script>
+</head>  
+
+<body bgcolor='pink'>  
+  
+    <div ng-app="mainApp" data-ng-controller="CRUDController">  
+  
+        <table>  
+            <tr>  
+                <td>BookTitle: </td>  
+                <td>  
+                    <input type="text" data-ng-model="bookModel.BookTitle" /></td>  
+            </tr>  
+            <tr>  
+                <td>Description:</td>  
+                <td>  
+                    <input type="text" data-ng-model="bookModel.Description" /></td>  
+            </tr>  
+            <tr>  
+                <td>PublishDate:</td>  
+                <td>  
+                    <input type="date" data-ng-model="bookModel.PublishDate" /></td>  
+            </tr>  
+             <tr>  
+                <td>PageCount: </td>  
+                <td>  
+                    <input type="number" data-ng-model="bookModel.PageCount" /></td>  
+            </tr>
+            <tr>  
+                <td>  
+                    <input type="button" value="Save Data" data-ng-click="AddData()" /></td>  
+                <td>  
+                    <input type="button" value="Update Data" data-ng-click="UpdateData()" /></td>  
+            </tr>  
+        </table>  
+  
+        <table border="1" style="width: 300px">  
+            <thead>  
+                <th>BookTitle</th>  
+                <th>Description</th>  
+                <th>PublishDate</th>  
+                <th>PageCount</th>  
+            </thead>  
+            <tr data-ng-repeat="book in bookList" data-ng-click="BindSelectedData(book)">  
+                <td>{{ book.BookTitle }}</td>  
+                <td>{{ book.Description }}</td>  
+                <td width=100>{{ book.PublishDate }}</td>
+                <td>{{ book.PageCount }}</td>  
+                <td>  
+                    <input type="button" value="Delete" data-ng-click="DeleteData(book)" /></td>  
+            </tr>  
+        </table>  
+    </div>  
+  
+    <script type="text/javascript">  
+        var app = angular.module("mainApp", []);  
+        app.controller('CRUDController', function ($scope) {  
+  
+            $scope.bookModel = {  
+                BookTitle: '',  
+                Description: '',  
+                Publishdate: 'dd/mm/yy',
+                PageCount: 0,
+            };  
+  
+            $scope.bookList = [];  
+            $scope.AddData = function () {  
+                var _book = {  
+                    BookTitle: $scope.bookModel.BookTitle,  
+                    Description: $scope.bookModel.Description,  
+                    PublishDate: $scope.bookModel.PublishDate,
+                    PageCount:$scope.bookModel.PageCount
+                };  
+                $scope.bookList.push(_book);  
+  //              ClearModel();  
+            }  
+  
+            $scope.DeleteData = function (book) {  
+                var _index = $scope.bookList.indexOf(book);  
+                $scope.bookList.splice(_index, 1);  
+            }  
+  
+            $scope.BindSelectedData = function (book) {  
+                $scope.bookModel.BookTitle = book.BookTitle;  
+                $scope.bookModel.Description = book.Description;  
+                $scope.bookModel.PublishDate = book.PublishDate;
+                $scope.bookModel.PageCount=book.PageCount;
+            }  
+  
+            $scope.UpdateData = function () {  
+                $.grep($scope.bookList, function (b) {  
+                    if (b.BookTitle == $scope.bookModel.BookTitle) {  
+                        b.Description = $scope.bookModel.Description;  
+                        b.PublishDate = $scope.bookModel.PublishDate; 
+                        b.PageCount=$scope.bookModel.PageCount;
+                    }  
+                });  
+                ClearModel();  
+            }  
+  
+            function ClearModel() {  
+                $scope.bookModel.BookTitle = '';  
+                $scope.bookModel.Description = '';  
+                $scope.bookModel.PublishDate = 'dd/mm/yyyy';  
+                $scope.bookModel.PageCount=0;
+            }  
+        });  
+    </script>  
+    
+    
+<div ng-app="myApp" ng-controller="myCtrl" >
+<form  action="mylogin.html" id="logoutpage">
+<button type="submit" >logout</button>
+</form> 
+    
+</body>  
+</html>  

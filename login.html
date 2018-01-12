@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+<script
+  src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.0/ui-bootstrap-tpls.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl" > 
+<form  action="/" id="loginpage" >
+username:  <input type="text" name="username" ng-model="username" required="required">
+<br>
+password : <input type="password" name="password" ng-model="password" required="required">
+<br>
+<button type="button" ng-click="submit()">Login</button>
+</form>
+</div>
+
+
+
+</body>
+</html>
